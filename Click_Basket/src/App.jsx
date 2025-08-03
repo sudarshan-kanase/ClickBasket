@@ -5,6 +5,7 @@ import AdminLogin from "./pages/AdminLogin";
 import AdminRegister from "./pages/AdminRegister";
 import ProtectedRoute from "./Routes/ProtectedRoute";
 import ProfilePage from "./pages/ProfilePage";
+import ContactPage from "./pages/ContactPage";
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         }
       />
       <Route path="/admin-profile" element={<ProfilePage />} />
+      <Route path="/ContactPage" element={<ContactPage />} />
     </Routes>
      </Router>
   );

@@ -29,7 +29,7 @@ const Navbar = () => {
             👤 <span className="hidden sm:inline">Profile</span>
           </a>
 
-          <a href="#" className="flex items-center gap-1 hover:text-blue-600">
+          <a href="/ContactPage" className="flex items-center gap-1 hover:text-blue-600">
             ❓ <span className="hidden sm:inline">Help</span>
           </a>
 
