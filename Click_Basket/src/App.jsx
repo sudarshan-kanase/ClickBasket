@@ -1,12 +1,26 @@
-import React from 'react';
-import Navbar from './components/Navbar';
-import HomePage from './pages/HomePage';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import AdminLogin from "./pages/AdminLogin";
+import AdminRegister from "./pages/AdminRegister";
+import ProtectedRoute from "./Routes/ProtectedRoute";
 
 function App() {
   return (
-    <div className="font-sans bg-gray-50 min-h-screen">
-      <HomePage />
-    </div>
+     <Router>
+    <Routes>
+      <Route path="/" element={<AdminLogin />} />
+      <Route path="/admin-register" element={<AdminRegister />} />
+      <Route
+        path="/HomePage"
+        element={
+          <ProtectedRoute>
+            <HomePage />
+          </ProtectedRoute>
+        }
+      />{" "}
+    </Routes>
+     </Router>
   );
 }
 
