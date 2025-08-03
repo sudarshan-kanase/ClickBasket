@@ -6,6 +6,9 @@ const images = [
   'https://rukminim1.flixcart.com/fk-p-flap/3240/540/image/f2ffab1767893241.jpg?q=60',
   'https://rukminim1.flixcart.com/fk-p-flap/3240/540/image/2968c0d378979542.jpeg?q=60',
   'https://rukminim1.flixcart.com/fk-p-flap/3240/540/image/6b6acdcf0b6f0108.jpg?q=60',
+  'https://rukminim2.flixcart.com/fk-p-flap/3240/540/image/28ce80d034b9c679.jpg?q=60',
+  'https://rukminim2.flixcart.com/fk-p-flap/3240/540/image/6daa071083b36b1b.jpeg?q=60',
+  'https://rukminim1.flixcart.com/fk-p-flap/3240/540/image/62e6dcf19df89081.jpeg?q=60',
 ];
 
 const HeroBanner = () => {
