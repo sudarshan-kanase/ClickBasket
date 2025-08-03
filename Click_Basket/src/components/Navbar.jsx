@@ -1,5 +1,4 @@
-
-const Navbar = () => {
+const Navbar = ({ setSearchQuery }) => {
   return (
     <nav className="bg-white shadow sticky top-0 z-50 px-6 py-4">
       <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-6">
@@ -9,11 +8,12 @@ const Navbar = () => {
           ClickBasket
         </div>
 
-        {/* Search Bar – always visible */}
+        {/* Search Bar */}
         <div className="flex-grow max-w-xl w-full">
           <input
             type="text"
             placeholder="Search for products..."
+            onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full border border-gray-300 rounded-full px-5 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
@@ -39,13 +39,6 @@ const Navbar = () => {
               0
             </span>
           </button>
-
-          {/* Social Icons */}
-          <div className="hidden md:flex items-center gap-2 text-xl ml-3">
-            <a href="#" title="Facebook" className="hover:text-blue-600">📘</a>
-            <a href="#" title="Twitter" className="hover:text-blue-500">🐦</a>
-            <a href="#" title="Instagram" className="hover:text-pink-500">📸</a>
-          </div>
         </div>
       </div>
     </nav>

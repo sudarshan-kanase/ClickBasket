@@ -1,4 +1,3 @@
-// src/pages/HomePage.jsx
 import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -8,10 +7,11 @@ import ProductList from '../components/ProductList';
 
 const HomePage = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
 
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
-      <Navbar />
+      <Navbar setSearchQuery={setSearchQuery} />
 
       <main className="flex-grow">
         <CategoryBar
@@ -29,7 +29,10 @@ const HomePage = () => {
             Featured Products
           </h2>
 
-          <ProductList selectedCategory={selectedCategory} />
+          <ProductList
+            selectedCategory={selectedCategory}
+            searchQuery={searchQuery}
+          />
         </section>
       </main>
 

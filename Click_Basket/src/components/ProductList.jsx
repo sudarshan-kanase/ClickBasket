@@ -1,9 +1,8 @@
-// src/components/ProductList.jsx
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ProductCard from "./ProductCard";
 
-const ProductList = ({ selectedCategory }) => {
+const ProductList = ({ selectedCategory, searchQuery }) => {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
 
@@ -39,14 +38,20 @@ const ProductList = ({ selectedCategory }) => {
     console.log("Cart Updated:", [...cart, product]);
   };
 
-  const filteredProducts =
-    selectedCategory === "All"
-      ? products
-      : products.filter(
-          (product) =>
-            product.category &&
-            product.category.toLowerCase() === selectedCategory.toLowerCase()
-        );
+  const filteredProducts = products.filter((product) => {
+    const matchesCategory =
+      selectedCategory === "All" ||
+      (product.category &&
+        product.category.toLowerCase() === selectedCategory.toLowerCase());
+
+    const matchesSearch =
+      !searchQuery ||
+      product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      product.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      product.category?.toLowerCase().includes(searchQuery.toLowerCase());
+
+    return matchesCategory && matchesSearch;
+  });
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-4 py-6">
@@ -60,7 +65,7 @@ const ProductList = ({ selectedCategory }) => {
         ))
       ) : (
         <div className="col-span-full text-center text-gray-500 text-lg">
-          No products found for "{selectedCategory}"
+          No products found.
         </div>
       )}
     </div>
