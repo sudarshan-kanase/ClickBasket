@@ -25,13 +25,13 @@ const CategoryBar = ({ selectedCategory, onSelectCategory }) => {
   };
 
   return (
-    <div className="bg-white py-4 shadow-sm sticky top-16 z-30">
-      <div className="max-w-7xl mx-auto px-4 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-12 gap-6 text-center">
+    <div className="bg-white py-4 px-4 sm:px-8 shadow-sm sticky top-16 z-30 border-b border-gray-200">
+      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-12 gap-5 text-center">
         {categories.map((category) => (
           <button
             key={category.name}
             onClick={() => handleCategoryClick(category.name)}
-            className={`flex flex-col items-center justify-center p-2 rounded-lg transition duration-200 hover:scale-105 hover:bg-blue-50 ${
+            className={`flex flex-col items-center justify-center p-3 rounded-xl transition duration-200 hover:scale-105 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-300 ${
               selectedCategory === category.name
                 ? 'text-blue-600 font-semibold bg-blue-100 shadow'
                 : 'text-gray-700'
@@ -40,9 +40,9 @@ const CategoryBar = ({ selectedCategory, onSelectCategory }) => {
             <img
               src={category.icon}
               alt={category.name}
-              className="w-10 h-10 md:w-12 md:h-12 object-contain"
+              className="w-12 h-12 sm:w-14 sm:h-14 object-contain"
             />
-            <span className="text-xs sm:text-sm mt-2 truncate w-[90px]">
+            <span className="text-xs sm:text-sm mt-2 truncate w-[80px] sm:w-[90px]">
               {category.name}
             </span>
           </button>
