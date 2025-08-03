@@ -21,7 +21,7 @@ const Navbar = () => {
         {/* Right Side Links */}
         <div className="flex items-center gap-4 text-lg text-gray-700 font-medium">
 
-          <a href="#" className="flex items-center gap-1 hover:text-blue-600">
+          <a href="/HomePage" className="flex items-center gap-1 hover:text-blue-600">
             🏠 <span className="hidden sm:inline">Home</span>
           </a>
 
