@@ -1,10 +1,25 @@
 // src/components/Footer.jsx
-import React from 'react';
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import React, { useState, useEffect } from 'react';
+import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedin, FaArrowUp } from 'react-icons/fa';
 
 const Footer = () => {
+  const [showTopBtn, setShowTopBtn] = useState(false);
+
+  // Show button when scrolled down
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowTopBtn(window.scrollY > 300);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="relative bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
 
         {/* Brand/About */}
@@ -20,7 +35,7 @@ const Footer = () => {
           <h3 className="text-xl font-semibold text-cyan-300 mb-4">Quick Links</h3>
           <ul className="space-y-2 text-sm">
             <li><a href="/" className="hover:text-cyan-400 transition-colors">🏠 Home</a></li>
-            <li><a href="/profile" className="hover:text-cyan-400 transition-colors">👤 Profile</a></li>
+            <li><a href="/admin-profile" className="hover:text-cyan-400 transition-colors">👤 Profile</a></li>
             <li><a href="/cart" className="hover:text-cyan-400 transition-colors">🛒 Cart</a></li>
             <li><a href="/help" className="hover:text-cyan-400 transition-colors">❓ Help</a></li>
           </ul>
@@ -42,6 +57,16 @@ const Footer = () => {
           </div>
         </div>
       </div>
+
+      {/* Go to Top Button */}
+      {showTopBtn && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-6 right-6 bg-cyan-500 hover:bg-cyan-600 text-white p-3 rounded-full shadow-lg transition-all"
+        >
+          <FaArrowUp />
+        </button>
+      )}
 
       {/* Bottom bar */}
       <div className="border-t border-gray-700 text-center text-xs text-gray-400 py-4">

@@ -4,6 +4,8 @@ import HomePage from "./pages/HomePage";
 import AdminLogin from "./pages/AdminLogin";
 import AdminRegister from "./pages/AdminRegister";
 import ProtectedRoute from "./Routes/ProtectedRoute";
+import ProfilePage from "./pages/ProfilePage";
+
 
 function App() {
   return (
@@ -18,7 +20,8 @@ function App() {
             <HomePage />
           </ProtectedRoute>
         }
-      />{" "}
+      />
+      <Route path="/admin-profile" element={<ProfilePage />} />
     </Routes>
      </Router>
   );

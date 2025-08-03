@@ -25,7 +25,7 @@ const Navbar = () => {
             🏠 <span className="hidden sm:inline">Home</span>
           </a>
 
-          <a href="#" className="flex items-center gap-1 hover:text-blue-600">
+          <a href="/admin-profile" className="flex items-center gap-1 hover:text-blue-600">
             👤 <span className="hidden sm:inline">Profile</span>
           </a>
 
