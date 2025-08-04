@@ -18,46 +18,50 @@ export default function ProfilePage() {
   if (!admin) return null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-100 to-orange-200 flex items-center justify-center px-4 relative">
+    <div className="min-h-screen bg-gradient-to-br from-orange-100 via-orange-200 to-orange-100 flex items-center justify-center px-4 relative">
       
-      {/* Back to Home Button */}
+      {/* Back Button */}
       <button
         onClick={() => navigate("/HomePage")}
-        className="absolute top-6 left-6 text-orange-600 hover:text-orange-800 flex items-center gap-2 text-sm sm:text-base"
+        className="absolute top-6 left-6 text-orange-700 hover:text-orange-900 flex items-center gap-2 text-sm sm:text-base transition-all"
       >
-        <FaArrowLeft /> Back to Home
+        <FaArrowLeft />
+        <span>Back to Home</span>
       </button>
 
       {/* Profile Card */}
-      <div className="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-md transition-all duration-300 hover:scale-[1.01] border border-orange-300">
-        <h2 className="text-3xl font-bold text-center text-orange-600 mb-6">Admin Profile</h2>
+      <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md border border-orange-300 hover:shadow-2xl transition-all duration-300">
+        <h2 className="text-3xl font-bold text-center text-orange-600 mb-6">
+          Admin Profile
+        </h2>
 
-        <div className="space-y-5 text-gray-800 text-sm sm:text-base">
-          <div className="flex items-center gap-3">
-            <img src="/icons/profile.png" alt="User Icon" className="w-6 h-6" />
-            <span className="font-semibold">Name:</span> {admin.name || "N/A"}
-          </div>
-          <div className="flex items-center gap-3">
-            <img src="/icons/mail.png" alt="Email Icon" className="w-6 h-6" />
-            <span className="font-semibold">Email:</span> {admin.email}
-          </div>
-          <div className="flex items-center gap-3">
-            <img src="/icons/mobile.png" alt="Mobile Icon" className="w-6 h-6" />
-            <span className="font-semibold">Mobile:</span> {admin.mobile || "N/A"}
-          </div>
+        <div className="space-y-4 text-gray-800 text-base">
+          <ProfileItem icon="/icons/profile.png" label="Name" value={admin.name || "N/A"} />
+          <ProfileItem icon="/icons/mail.png" label="Email" value={admin.email} />
+          <ProfileItem icon="/icons/mobile.png" label="Mobile" value={admin.mobile || "N/A"} />
         </div>
 
         <button
-          className="mt-8 w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold py-2 rounded-lg hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-md"
           onClick={() => {
             localStorage.removeItem("isAdmin");
             localStorage.removeItem("adminUser");
             navigate("/");
           }}
+          className="mt-8 w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold py-2 rounded-lg hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-md"
         >
           Logout
         </button>
       </div>
+    </div>
+  );
+}
+
+function ProfileItem({ icon, label, value }) {
+  return (
+    <div className="flex items-center gap-3 bg-orange-50 p-3 rounded-lg shadow-sm hover:shadow-md transition-all">
+      <img src={icon} alt={`${label} icon`} className="w-6 h-6" />
+      <span className="font-semibold">{label}:</span>
+      <span className="truncate">{value}</span>
     </div>
   );
 }
