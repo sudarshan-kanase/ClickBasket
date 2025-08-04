@@ -1,45 +1,34 @@
-import React, { useContext, useState } from "react";
-import { CartContext } from "../context/CartContext";
+import React from "react";
+import { useCart } from "../context/CartContext";
 import { X, Plus, Minus } from "lucide-react";
 
 const CartModal = ({ isOpen, onClose }) => {
   const {
     cart,
     removeFromCart,
+    clearCart,
     increaseQuantity,
     decreaseQuantity,
-    clearCart,
-  } = useContext(CartContext);
+  } = useCart();
 
-  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const total = cart.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
 
-  const [form, setForm] = useState({
-    name: "",
-    mobile: "",
-    address: "",
-  });
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
-  };
+  if (!isOpen) return null;
 
   const handlePlaceOrder = async () => {
-    if (!form.name || !form.mobile || !form.address) {
-      alert("Please fill all fields");
-      return;
-    }
-
     const orderData = {
-      name: form.name,
-      mobile: form.mobile,
-      address: form.address,
+      name: "Guest", // Replace or collect via form/modal
+      mobile: "0000000000", // Replace or collect
+      address: "Default Address", // Replace or collect
       total,
       items: cart,
     };
 
     try {
-      const response = await fetch("http://localhost:5000/api/orders", {
+      const response = await fetch("http://localhost:3000/api/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(orderData),
@@ -50,7 +39,6 @@ const CartModal = ({ isOpen, onClose }) => {
       const result = await response.json();
       alert("🎉 Order placed successfully!");
       clearCart();
-      setForm({ name: "", mobile: "", address: "" });
       onClose();
     } catch (error) {
       console.error("Order Error:", error);
@@ -58,10 +46,8 @@ const CartModal = ({ isOpen, onClose }) => {
     }
   };
 
-  if (!isOpen) return null;
-
   return (
-    <div className="fixed right-4 top-20 bg-white shadow-2xl rounded-xl w-[90%] max-w-sm z-50 border border-gray-200 p-5 animate-fade-in max-h-[90vh] overflow-y-auto">
+    <div className="fixed right-4 top-20 bg-white shadow-2xl rounded-xl w-[90%] max-w-sm z-50 border border-gray-200 p-5 animate-fade-in">
       {/* Header */}
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-bold text-gray-800">Your Cart</h2>
@@ -74,7 +60,7 @@ const CartModal = ({ isOpen, onClose }) => {
       {cart.length === 0 ? (
         <p className="text-gray-500 text-sm">Your cart is empty</p>
       ) : (
-        <ul className="divide-y divide-gray-200 max-h-52 overflow-y-auto pr-1">
+        <ul className="divide-y divide-gray-200 max-h-64 overflow-y-auto pr-1">
           {cart.map((item) => (
             <li key={item.id} className="py-3 flex justify-between items-center">
               <div>
@@ -109,50 +95,19 @@ const CartModal = ({ isOpen, onClose }) => {
         </ul>
       )}
 
-      {/* Cart Total */}
+      {/* Cart Footer */}
       {cart.length > 0 && (
         <>
-          <div className="mt-4 border-t pt-3">
-            <div className="flex justify-between font-semibold text-gray-700 mb-3">
-              <span>Total:</span>
-              <span>₹{total}</span>
-            </div>
-
-            {/* Order Form */}
-            <div className="space-y-3">
-              <input
-                type="text"
-                name="name"
-                placeholder="Your Name"
-                value={form.name}
-                onChange={handleInputChange}
-                className="w-full border rounded-md px-3 py-2 text-sm focus:outline-none focus:ring focus:border-blue-500"
-              />
-              <input
-                type="tel"
-                name="mobile"
-                placeholder="Mobile Number"
-                value={form.mobile}
-                onChange={handleInputChange}
-                className="w-full border rounded-md px-3 py-2 text-sm focus:outline-none focus:ring focus:border-blue-500"
-              />
-              <textarea
-                name="address"
-                placeholder="Delivery Address"
-                value={form.address}
-                onChange={handleInputChange}
-                className="w-full border rounded-md px-3 py-2 text-sm focus:outline-none focus:ring focus:border-blue-500"
-                rows={2}
-              ></textarea>
-            </div>
-
-            <button
-              onClick={handlePlaceOrder}
-              className="mt-4 w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition"
-            >
-              Place Order
-            </button>
+          <div className="mt-5 flex justify-between font-semibold text-gray-700">
+            <span>Total:</span>
+            <span>₹{total}</span>
           </div>
+          <button
+            onClick={handlePlaceOrder}
+            className="mt-4 w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition"
+          >
+            Place Order
+          </button>
         </>
       )}
     </div>
