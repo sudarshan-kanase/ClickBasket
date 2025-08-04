@@ -23,10 +23,10 @@ export default function AdminRegister() {
     <div className="min-h-screen bg-gradient-to-br from-orange-100 to-orange-200 flex items-center justify-center px-4">
       <form
         onSubmit={handleRegister}
-        className="bg-white border border-orange-300 rounded-2xl shadow-xl p-8 md:p-10 w-full max-w-md transition-all duration-300"
+        className="bg-white border border-orange-300 rounded-2xl shadow-xl p-8 md:p-10 w-full max-w-md md:max-w-xl transition-all duration-300"
       >
         <h2 className="text-3xl font-bold text-orange-600 text-center mb-6 tracking-wide">
-          Create  Account
+          Create Account
         </h2>
 
         <div className="space-y-4">
@@ -67,14 +67,14 @@ export default function AdminRegister() {
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400 transition"
           />
         </div>
-          <br />
+        <br />
         <button
           type="submit"
           className="mt-6 w-full py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold rounded-lg hover:from-orange-600 hover:to-orange-700 transition-all duration-200"
         >
           Register
         </button>
-          <br />
+        <br />
         <h5 className="mt-6 text-center text-sm text-gray-600">
           Already have an account?{" "}
           <Link to="/" className="text-orange-500 font-medium hover:underline">
