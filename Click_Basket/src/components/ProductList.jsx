@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ProductCard from "./ProductCard";
+import { useCart } from "../context/CartContext"; // ✅
 
 const ProductList = ({ selectedCategory, searchQuery }) => {
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
+  const { addToCart } = useCart(); // ✅ Use global cart
 
   useEffect(() => {
     axios
@@ -33,11 +34,6 @@ const ProductList = ({ selectedCategory, searchQuery }) => {
       });
   }, []);
 
-  const handleAddToCart = (product) => {
-    setCart((prevCart) => [...prevCart, product]);
-    console.log("Cart Updated:", [...cart, product]);
-  };
-
   const filteredProducts = products.filter((product) => {
     const matchesCategory =
       selectedCategory === "All" ||
@@ -60,7 +56,7 @@ const ProductList = ({ selectedCategory, searchQuery }) => {
           <ProductCard
             key={product.id}
             product={product}
-            onAddToCart={handleAddToCart}
+            onAddToCart={() => addToCart(product)} // ✅ Call context
           />
         ))
       ) : (
