@@ -29,7 +29,7 @@ export default function AdminLogin() {
         className="w-full max-w-md md:max-w-xl lg:max-w-2xl bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-orange-300 transition-all duration-300 hover:shadow-2xl"
       >
         <h2 className="text-3xl font-bold text-center text-orange-600 mb-6 tracking-wide">
-          Admin Login
+          User Login
         </h2>
 
         <div className="space-y-5">
