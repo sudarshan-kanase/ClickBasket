@@ -26,13 +26,13 @@ export default function AdminLogin() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-100 via-orange-200 to-orange-100 px-4">
       <form
         onSubmit={handleLogin}
-        className="w-full max-w-md bg-white p-8 rounded-2xl shadow-xl border border-orange-300 hover:shadow-2xl transition-all duration-300"
+        className="w-full max-w-md md:max-w-xl lg:max-w-2xl bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-orange-300 transition-all duration-300 hover:shadow-2xl"
       >
-        <h2 className="text-3xl font-bold text-center text-orange-600 mb-6">
-          User Login
+        <h2 className="text-3xl font-bold text-center text-orange-600 mb-6 tracking-wide">
+          Admin Login
         </h2>
 
-        <div className="space-y-4">
+        <div className="space-y-5">
           <input
             name="email"
             type="email"
@@ -42,8 +42,7 @@ export default function AdminLogin() {
             required
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-400 outline-none transition-all duration-200"
           />
-          <br />
-          <br />
+            <br /><br />
           <input
             name="password"
             type="password"
@@ -60,16 +59,14 @@ export default function AdminLogin() {
             {error}
           </p>
         )}
-          <br />
+        <br />
         <button
           type="submit"
-          className="w-full mt-6 bg-orange-500 text-white py-3 rounded-lg font-semibold hover:bg-orange-600 transition-all duration-300 shadow-md"
+          className="w-full mt-6 bg-gradient-to-r from-orange-500 to-orange-600 text-white py-3 rounded-lg font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-md"
         >
           Login
         </button>
         <br />
-        
-
         <h5 className="text-center text-sm text-gray-600 mt-6">
           Don’t have an account?{" "}
           <Link
