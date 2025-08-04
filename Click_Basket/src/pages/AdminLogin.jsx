@@ -23,49 +23,62 @@ export default function AdminLogin() {
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center bg-gradient-to-br from-orange-100 to-orange-200 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-100 via-orange-200 to-orange-100 px-4">
       <form
         onSubmit={handleLogin}
-        className="bg-white shadow-2xl rounded-2xl p-8 max-w-md w-full border border-orange-200"
+        className="w-full max-w-md bg-white p-8 rounded-2xl shadow-xl border border-orange-300 hover:shadow-2xl transition-all duration-300"
       >
-        <h2 className="text-3xl font-extrabold mb-6 text-orange-600 text-center tracking-wide">
+        <h2 className="text-3xl font-bold text-center text-orange-600 mb-6">
           User Login
         </h2>
 
-        <input
-          name="email"
-          type="email"
-          placeholder="Email"
-          className="w-full border border-gray-300 p-3 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-orange-400"
-          onChange={handleChange}
-          required
-        />
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          className="w-full border border-gray-300 p-3 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-orange-400"
-          onChange={handleChange}
-          required
-        />
+        <div className="space-y-4">
+          <input
+            name="email"
+            type="email"
+            placeholder="Email"
+            value={form.email}
+            onChange={handleChange}
+            required
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-400 outline-none transition-all duration-200"
+          />
+          <br />
+          <br />
+          <input
+            name="password"
+            type="password"
+            placeholder="Password"
+            value={form.password}
+            onChange={handleChange}
+            required
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-400 outline-none transition-all duration-200"
+          />
+        </div>
 
         {error && (
-          <p className="text-red-500 text-center mb-4 font-medium">{error}</p>
+          <p className="text-red-600 text-sm text-center mt-4 font-medium">
+            {error}
+          </p>
         )}
-
+          <br />
         <button
           type="submit"
-          className="w-full bg-orange-500 text-white py-3 rounded-lg hover:bg-orange-600 font-semibold transition duration-200"
+          className="w-full mt-6 bg-orange-500 text-white py-3 rounded-lg font-semibold hover:bg-orange-600 transition-all duration-300 shadow-md"
         >
           Login
         </button>
+        <br />
+        
 
-        <p className="mt-5 text-center text-sm text-gray-600">
-          Don't have an account?{" "}
-          <Link to="/admin-register" className="text-orange-500 font-medium hover:underline">
+        <h5 className="text-center text-sm text-gray-600 mt-6">
+          Don’t have an account?{" "}
+          <Link
+            to="/admin-register"
+            className="text-orange-500 font-medium hover:underline"
+          >
             Register here
           </Link>
-        </p>
+        </h5>
       </form>
     </div>
   );
