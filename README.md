@@ -36,11 +36,11 @@ This frontend connects with the [admin-backend](https://github.com/your-username
 
 ```bash
 git clone https://github.com/your-username/admin-frontend
-cd admin-frontend
+cd Click_Basket
 npm install
 npm run dev
 ////////////
-Email: admin@example.com
+Email: user@example.com
 Password: yourpassword
 ## 📁 Folder Structure
 
