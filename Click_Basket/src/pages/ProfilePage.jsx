@@ -32,7 +32,7 @@ export default function ProfilePage() {
       {/* Profile Card */}
       <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-xl w-full max-w-md md:max-w-lg border border-orange-300 hover:shadow-2xl transition-all duration-300">
         <h2 className="text-2xl sm:text-3xl font-bold text-center text-orange-600 mb-6">
-          Admin Profile
+          User Profile
         </h2>
 
         <div className="space-y-4 text-gray-800 text-base">
